@@ -9,6 +9,7 @@ public class Level_load : MonoBehaviour
     public List<GameObject> floors;
     [SerializeField] private LevelInfo levelInfo;
     [SerializeField] private GameObject floor;
+    [SerializeField] private PlayerManager playerManager;
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class Level_load : MonoBehaviour
     void Generate_Level()
     {
         Instantiate(floor, levelInfo.floor_pos,floor.transform.rotation);
+        playerManager.levelInfo = levelInfo;
+        playerManager.Player_Init();
     }
     void Update()
     {

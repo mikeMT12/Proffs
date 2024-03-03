@@ -9,6 +9,8 @@ public class Level_data
     public int plaeyrCount;
     public int level_size;
     public Vector3 floor_pos;
+    public List<int> playerPozX;
+    public List<int> playerPozY;
 
 }
 public class Level_serialize : MonoBehaviour
@@ -17,6 +19,7 @@ public class Level_serialize : MonoBehaviour
     [SerializeField] private List<string> jsonPaths;
     public Level_data level_data;
     [SerializeField] private Level_load level_load;
+ 
 
     void Start()
     {
@@ -24,8 +27,11 @@ public class Level_serialize : MonoBehaviour
         for(int i = 0; i < jsonPaths.Count; i++)
         {
             string jsonFile = jsonPaths[i];
-            /*Level_data level_data = new Level_data { level_id = i + 1, plaeyrCount = 4, level_size = 2, floor_pos=new Vector3(2.682f,0, 2.672f) };
-            ParseToJson(jsonFile, level_data);*/
+            
+            //Level_data level_data = new Level_data { level_id = i + 1, plaeyrCount = 4, level_size = 2, floor_pos=new Vector3(2.682f,0, 2.672f) };
+           
+            
+            //ParseToJson(jsonFile, level_data);
             
             //Debug.Log(level_data.level_id);
             //Debug.Log(File.Exists(filePath + jsonFile)); 
@@ -49,6 +55,7 @@ public class Level_serialize : MonoBehaviour
 
     public void ParseToJson(string jsonFile, Level_data level_data)
     {
+        
         string json = JsonUtility.ToJson(level_data);
         //Debug.Log(json);
         File.WriteAllText(filePath + jsonFile, json);
@@ -65,6 +72,8 @@ public class Level_serialize : MonoBehaviour
         level_SO.plaeyrCount = level_data.plaeyrCount;
         level_SO.level_size = level_data.level_size;
         level_SO.floor_pos = level_data.floor_pos;
+        level_SO.playerPozX = level_data.playerPozX;
+        level_SO.playerPozY = level_data.playerPozY;   
         //Debug.Log(level_SO.level_id);
     }
 

@@ -9,9 +9,10 @@ public class LevelInfo : ScriptableObject
     public int plaeyrCount;
     public int level_size;
     public GameObject cube;
-    public List<Player> players;
+    //public List<Player> players;
     public float floor_offset;
     public Vector3 floor_pos;
-    //private List<Player> playerPoz;
+    public List<int> playerPozX;
+    public List<int> playerPozY;
 
 }
