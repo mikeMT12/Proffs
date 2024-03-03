@@ -29,8 +29,9 @@ public class Level_load : MonoBehaviour
 
     void Generate_Level()
     {
-        Instantiate(floor, levelInfo.floor_pos,floor.transform.rotation);
+        Instantiate(floor, levelInfo.floor_pos, floor.transform.rotation);
         playerManager.levelInfo = levelInfo;
+        playerManager.floor = floor;
         playerManager.Player_Init();
     }
     void Update()
