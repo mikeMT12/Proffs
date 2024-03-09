@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<DailyReward_Data xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <rewards>
+    <Reward>
+      <Type>Coins</Type>
+      <Amount>10</Amount>
+    </Reward>
+    <Reward>
+      <Type>Coins</Type>
+      <Amount>20</Amount>
+    </Reward>
+    <Reward>
+      <Type>Coins</Type>
+      <Amount>30</Amount>
+    </Reward>
+    <Reward>
+      <Type>Coins</Type>
+      <Amount>40</Amount>
+    </Reward>
+    <Reward>
+      <Type>Coins</Type>
+      <Amount>50</Amount>
+    </Reward>
+    <Reward>
+      <Type>Coins</Type>
+      <Amount>60</Amount>
+    </Reward>
+  </rewards>
+  <nextReward>4</nextReward>
+  <rewardClaimDate>2024-03-09T18:46:23.8187502+03:00</rewardClaimDate>
+</DailyReward_Data>

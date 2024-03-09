@@ -13,6 +13,6 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.DrawRay(transform.position, transform.forward, Color.yellow);
     }
 }

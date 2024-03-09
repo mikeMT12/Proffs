@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlyerMovement : MonoBehaviour
 {
     public List<GameObject> players;
-    
+    public bool hasPlayer;
     void Start()
     {
         Debug.Log("Start"); 
@@ -15,16 +15,24 @@ public class PlyerMovement : MonoBehaviour
     {
         players.Add(other.gameObject);
         Debug.Log(other.gameObject.name);
+        
+        if(gameObject.tag == "CentreZone")
+        {
+            hasPlayer = true;
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerExit(Collider other)
+    {
+        players.Clear();
+    }
+
+
+    /*private void OnCollisionEnter(Collision collision)
     {
         players.Add(collision.gameObject);
         Debug.Log(collision.gameObject.name);
-    }
+    }*/
     // Update is called once per frame
-    void Update()
-    {
-       
-    }
+
 }

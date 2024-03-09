@@ -23,16 +23,27 @@ public class Level_serialize : MonoBehaviour
 
     void Start()
     {
-        filePath = Application.dataPath + "/Level/Resources/";
-        for(int i = 0; i < jsonPaths.Count; i++)
+        if(!Directory.Exists(Application.dataPath + "/Resources/"))
         {
+            Directory.CreateDirectory(Application.dataPath + "/Resources/");
+        }
+        
+        filePath = Application.dataPath + "/Resources/";
+        DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Resources");
+        FileInfo[] info = dir.GetFiles("*.xml");
+        foreach (FileInfo f in info)
+        {
+            print(f.Name);
+        }
+        for (int i = 0; i < jsonPaths.Count; i++)
+        {
+
             string jsonFile = jsonPaths[i];
-            
             //Level_data level_data = new Level_data { level_id = i + 1, plaeyrCount = 4, level_size = 2, floor_pos=new Vector3(2.682f,0, 2.672f) };
-           
-            
+
+
             //ParseToJson(jsonFile, level_data);
-            
+
             //Debug.Log(level_data.level_id);
             //Debug.Log(File.Exists(filePath + jsonFile)); 
             // Saving to SO
@@ -55,9 +66,14 @@ public class Level_serialize : MonoBehaviour
 
     public void ParseToJson(string jsonFile, Level_data level_data)
     {
-        
+
+        /*if (!File.Exists(filePath + jsonFile))
+        {
+            File.Create(filePath + jsonFile);
+        }*/
         string json = JsonUtility.ToJson(level_data);
         //Debug.Log(json);
+
         File.WriteAllText(filePath + jsonFile, json);
         
 
