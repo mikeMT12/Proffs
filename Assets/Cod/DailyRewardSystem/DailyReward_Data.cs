@@ -9,7 +9,7 @@ using DailyRewardSystem;
 [System.Serializable]
 public class DailyReward_Data
 {
-    public  List<Reward> rewards;
+    public  List<int> rewards;
     public  int nextReward;
     public  DateTime rewardClaimDate;
 
@@ -38,7 +38,7 @@ public class DailyReward_Data
         get { return rewards.Count; }
     }
 
-    public Reward GetReward(int index)
+    public int GetReward(int index)
     {
         return rewards[index];
     }
@@ -58,8 +58,9 @@ public class DailyReward_Data
     {
 
     }
+  
 
-    public void SaveInfo(List<Reward> rewards, int nextReward, DateTime rewardClaimDate)
+    public void SaveInfo(List<int> rewards, int nextReward, DateTime rewardClaimDate)
     {
         XmlSerializer formatter = new XmlSerializer(typeof(DailyReward_Data));
         filePath = Application.dataPath + "/Resources/XMLDailyReward.xml";
@@ -76,6 +77,7 @@ public class DailyReward_Data
 
         if (File.Exists(filePath))
         {
+            Debug.Log(File.Exists(filePath));
             File.WriteAllText(filePath, "");
         }
 

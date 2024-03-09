@@ -16,16 +16,9 @@ public class SettingsData
 
     public void CheckFileExist()
     {
-        if(!Directory.Exists(Application.dataPath + "/Resources"))
-        {
-            Directory.CreateDirectory(Application.dataPath + "/Resources");
-            
-        }
-        if(!File.Exists(Application.dataPath + "/Resources/XMLSettingsData.xml"))
-        {
-            File.Create(Application.dataPath + "/Resources/XMLSettingsData.xml");
-        }
-        filePath = Application.dataPath + "/Resources/XMLSettingsData.xml";
+       
+        
+        //SaveInfo();
         Debug.Log(filePath);
        
         //musicVolume = AudioController.volume;

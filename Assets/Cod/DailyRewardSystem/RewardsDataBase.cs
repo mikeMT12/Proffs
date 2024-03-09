@@ -26,7 +26,7 @@ public class RewardsDataBase : MonoBehaviour
         
     }
 
-    public void SaveInfo(List<Reward> rewards, int nextReward, DateTime rewardClaimDate)
+    public void SaveInfo(List<int> rewards, int nextReward, DateTime rewardClaimDate)
     {
         XmlSerializer formatter = new XmlSerializer(typeof(DailyReward_Data));
 

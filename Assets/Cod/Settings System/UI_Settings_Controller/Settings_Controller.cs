@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.IO;
 
 public class Settings_Controller : MonoBehaviour
 {
@@ -24,8 +25,22 @@ public class Settings_Controller : MonoBehaviour
 
     void Start()
     {
-        settingsData.LoadInfo(true);
-        settingsData.CheckFileExist();
+        //settingsData.CheckFileExist();
+        if (!Directory.Exists(Application.dataPath + "/Resources"))
+        {
+            Directory.CreateDirectory(Application.dataPath + "/Resources");
+
+        }
+        if (!File.Exists(Application.dataPath + "/Resources/XMLSettingsData.xml"))
+        {
+            File.Create(Application.dataPath + "/Resources/XMLSettingsData.xml");
+        }
+        else
+        {
+            settingsData.LoadInfo(true);
+        }
+        
+        
         
         Initialize();
         

@@ -9,14 +9,10 @@ using System.IO;
 
 namespace DailyRewardSystem
 {
-    public enum RewardType
-    {
-        Coins
-    }
+
 
     [Serializable] public struct Reward
     {
-        public RewardType Type;
         public int Amount;
     }
 
@@ -67,13 +63,23 @@ namespace DailyRewardSystem
         //[SerializeField] private DailyReward_Data dailyReward_data;
         private int nextRewardIndex;
         private bool isRewardReady = false;
-/*        public List<Reward> rewards;
-        public int nextReward;*/
+        private bool ferst_time = true;
+        /*        public List<Reward> rewards;
+                public int nextReward;*/
 
-        void Start()
+        private void Awake()
         {
-            //dailyReward_data.SaveInfo(rewards, nextReward, DateTime.Now);
-            if (Directory.Exists(Application.dataPath + "/Resources"))
+            if (!Directory.Exists(Application.dataPath + "/Resources"))
+            {
+                Directory.CreateDirectory(Application.dataPath + "/Resources");
+            }
+            if (!File.Exists(Application.dataPath + "/Resources/XMLWorldData.xml"))
+            {
+                File.Create(Application.dataPath + "/Resources/XMLWorldData.xml");
+                
+            }
+
+            if (!Directory.Exists(Application.dataPath + "/Resources"))
             {
                 Directory.CreateDirectory(Application.dataPath + "/Resources");
             }
@@ -81,9 +87,41 @@ namespace DailyRewardSystem
             {
                 File.Create(Application.dataPath + "/Resources/XMLDailyReward.xml");
             }
-            dailyReward_data.LoadInfo();
-            //WorldData.SaveInfo(worldData.coins);
+        }
+        void Start()
+        {
+            print(File.ReadAllText(Application.dataPath + "/Resources/XMLWorldData.xml", System.Text.Encoding.UTF8));
+            if (File.ReadAllText(Application.dataPath + "/Resources/XMLWorldData.xml", System.Text.Encoding.UTF8) == "") 
+            {
+                WorldData.SaveInfo(0, false);
+                dailyReward_data.rewards = new List<int> {
+                10,
+                20,
+                30,
+                40,
+                50,
+                60,
+                70
+                };
+                dailyReward_data.SaveInfo(dailyReward_data.rewards, 0, DateTime.Now);
+                ferst_time = false;
+            }
+                
+            
             worldData.LoadInfo();
+            
+            //dailyReward_data.SaveInfo(rewards, nextReward, DateTime.Now);
+           
+            
+            //dailyReward_data.SaveInfo(rewards0, 0, DateTime.Now);
+            dailyReward_data.LoadInfo();
+            
+            
+
+            
+
+            //WorldData.SaveInfo(worldData.coins);
+            
             Initialize();
            
             StopAllCoroutines();
@@ -144,7 +182,7 @@ namespace DailyRewardSystem
             rewardsNotification.SetActive(true);
 
             //Update Reward UI
-            Reward reward = dailyReward_data.GetReward(nextRewardIndex);
+            int reward = dailyReward_data.GetReward(nextRewardIndex);
 
             //Icon
           
@@ -152,7 +190,7 @@ namespace DailyRewardSystem
        
 
             //Amount
-            rewardAmountText.text = string.Format("+{0}", reward.Amount);
+            rewardAmountText.text = string.Format("+{0}", reward);
 
         }
 
@@ -173,6 +211,7 @@ namespace DailyRewardSystem
         void OnOpenButtonClick()
         {
             rewardCanvas.SetActive(true);
+            
         }
 
         void OnCloseButtonClick()
@@ -182,18 +221,13 @@ namespace DailyRewardSystem
 
         void OnClaimButtonClick()
         {
-            Reward reward = dailyReward_data.GetReward(nextRewardIndex);
-            Debug.Log(reward.Type);
+            int reward = dailyReward_data.GetReward(nextRewardIndex);
+            //Debug.Log(reward.Type);
             //check reward type
-
-            if (reward.Type == RewardType.Coins)
-            {
-                Debug.Log("<color=yellow>" + reward.Type.ToString() + " Claimed : </color>+" + reward.Amount);
-                worldData.coins += reward.Amount;
-                fxCoins.Play();
-                UpdateCoinsTextUI();
-
-            }
+            Debug.Log("<color=yellow>" + "Coins" + " Claimed : </color>+" + reward);
+            worldData.coins += reward;
+            fxCoins.Play();
+            UpdateCoinsTextUI();
 
 
             //Save next reward index
@@ -217,8 +251,10 @@ namespace DailyRewardSystem
         {
             Debug.Log("Application ending after " + Time.time + " seconds");
             dailyReward_data.SaveInfo(dailyReward_data.rewards, dailyReward_data.nextReward, dailyReward_data.rewardClaimDate);
-            WorldData.SaveInfo(worldData.coins);
+            WorldData.SaveInfo(worldData.coins, false);
         }
+
+       
 
 
     }

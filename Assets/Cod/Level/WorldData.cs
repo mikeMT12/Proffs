@@ -9,6 +9,7 @@ using System.IO;
 public class WorldData 
 {
     public int coins = 0;
+    public bool ferst_time;
 
     /*public static int Coins
     {
@@ -20,16 +21,8 @@ public class WorldData
     }*/
 
 
-    public static void SaveInfo(int Coins)
+    public static void SaveInfo(int Coins, bool ferst_time)
     {
-        if (Directory.Exists(Application.dataPath + "/Resources"))
-        {
-            Directory.CreateDirectory(Application.dataPath + "/Resources");
-        }
-        if (!File.Exists(Application.dataPath + "/Resources/XMLWorldData.xml"))
-        {
-            File.Create(Application.dataPath + "/Resources/XMLWorldData.xml");
-        }
         string filePath = Application.dataPath + "/Resources/XMLWorldData.xml";
 
 
@@ -38,7 +31,8 @@ public class WorldData
         //List<int> rewards = new List<int>();
         var data = new WorldData()
         {
-            coins = Coins
+            coins = Coins,
+            ferst_time = ferst_time
         };
 
         
@@ -58,14 +52,22 @@ public class WorldData
     }
     public void LoadInfo()
     {
+        
+
         XmlSerializer formatter = new XmlSerializer(typeof(WorldData));
         string filePath = Application.dataPath + "/Resources/XMLWorldData.xml";
         using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
         {
             WorldData worldData = (WorldData)formatter.Deserialize(fs);
             coins = worldData.coins;
+            ferst_time = worldData.ferst_time;
 
         }
+    }
+
+    public void CheckFerstTime()
+    {
+
     }
 
     /*public int GetCoins()

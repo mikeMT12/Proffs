@@ -2589,24 +2589,12 @@ MonoBehaviour:
   timeToWaitText: {fileID: 1153182748}
   iconCoinsSprite: {fileID: 21300000, guid: 9f921cd75e1380f47be6b70254678ad6, type: 3}
   dailyReward_data:
-    rewards:
-    - Type: 0
-      Amount: 10
-    - Type: 0
-      Amount: 20
-    - Type: 0
-      Amount: 30
-    - Type: 0
-      Amount: 40
-    - Type: 0
-      Amount: 50
-    - Type: 0
-      Amount: 60
+    rewards: 0a000000140000001e00000028000000320000003c00000046000000
     nextReward: 1
   worldData:
     coins: 10
   fxCoins: {fileID: 198551463337987226, guid: 37153551719d4eb4a808b1096891c320, type: 3}
-  nextRewardDelay: 0.005
+  nextRewardDelay: 0.002
   checkForRewardDelay: 1
 --- !u!1 &917624928
 GameObject:
