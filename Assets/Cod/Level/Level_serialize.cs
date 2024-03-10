@@ -19,14 +19,19 @@ public class Level_serialize : MonoBehaviour
     [SerializeField] private List<string> jsonPaths;
     public Level_data level_data;
     [SerializeField] private Level_load level_load;
- 
+
+    private void Awake()
+    {
+        if (!Directory.Exists(Application.dataPath + "/Resources"))
+        {
+            Directory.CreateDirectory(Application.dataPath + "/Resources");
+        }
+        //if(File.Exists(Application.dataPath + "/Resources/" + )
+    }
 
     void Start()
     {
-        if(!Directory.Exists(Application.dataPath + "/Resources/"))
-        {
-            Directory.CreateDirectory(Application.dataPath + "/Resources/");
-        }
+        
         
         filePath = Application.dataPath + "/Resources/";
         DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Resources");
