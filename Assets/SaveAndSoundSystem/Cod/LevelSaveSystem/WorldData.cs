@@ -11,16 +11,6 @@ public class WorldData
     public int coins = 0;
     public bool ferst_time;
 
-    /*public static int Coins
-    {
-        get{ return _coins; }
-        set {
-            _coins = value;
-            
-        }
-    }*/
-
-
     public static void SaveInfo(int Coins, bool ferst_time)
     {
         string filePath = Application.dataPath + "/Resources/XMLWorldData.xml";
@@ -52,8 +42,6 @@ public class WorldData
     }
     public void LoadInfo()
     {
-        
-
         XmlSerializer formatter = new XmlSerializer(typeof(WorldData));
         string filePath = Application.dataPath + "/Resources/XMLWorldData.xml";
         using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
@@ -65,13 +53,4 @@ public class WorldData
         }
     }
 
-    public void CheckFerstTime()
-    {
-
-    }
-
-    /*public int GetCoins()
-    {
-        return coins;
-    }*/
 }
