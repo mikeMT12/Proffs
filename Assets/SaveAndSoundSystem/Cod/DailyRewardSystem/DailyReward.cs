@@ -79,10 +79,10 @@ namespace DailyRewardSystem
                 
             }
 
-            if (!Directory.Exists(Application.dataPath + "/Resources"))
+            /*if (!Directory.Exists(Application.dataPath + "/Resources"))
             {
                 Directory.CreateDirectory(Application.dataPath + "/Resources");
-            }
+            }*/
             if (!File.Exists(Application.dataPath + "/Resources/XMLDailyReward.xml"))
             {
                 File.Create(Application.dataPath + "/Resources/XMLDailyReward.xml");
